@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 22:52:33 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/19 21:18:58 by ojebbari         ###   ########.fr       */
+/*   Created: 2023/05/19 16:58:36 by ojebbari          #+#    #+#             */
+/*   Updated: 2023/05/20 22:19:50 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal.h"
+#include "fractal_bonus.h"
 
-double	mag(double a, double b)
-{
-	return (sqrt(a * a + b * b));
-}
-
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-int	mandelbrot(double a, double b)
+int	julia_bonus(double a, double b, t_vars *hadik)
 {
 	double		zr;
 	double		zi;
@@ -30,22 +20,23 @@ int	mandelbrot(double a, double b)
 	int			i;
 
 	i = 0;
-	zi = 0;
-	zr = 0;
-	while (i < ITER && mag(zr, zi) < 2.0)
+	zr = a;
+	zi = b;
+	while (i < ITER && mag_bonus(zr, zi) < 2.0)
 	{
 		tmp = zr;
-		zr = zr * zr - zi * zi + a;
-		zi = 2 * tmp * zi + b;
+		zr = zr * zr - zi * zi + hadik->mouse_x ;
+		zi = 2 * tmp * zi + hadik->mouse_y;
 		i++;
 	}
 	return (i);
 }
 
-void render_mandelbrot(t_vars *hadik)
+void render_julia_bonus(t_vars *hadik)
 {
 	int i;
 	int j;
+	int it;
 
 	i = 0;
 	j = 0;
@@ -54,8 +45,9 @@ void render_mandelbrot(t_vars *hadik)
 		i = 0;
 		while (i < WIDTH)
 		{
-			hadik->it = (mandelbrot((i - WIDTH / 2) / hadik->zoom , (j - HEIGHT / 2) / hadik->zoom) / ITER ) * 255;
-			my_mlx_pixel_put(hadik, i, j, create_trgb(0, hadik->it, hadik->it, hadik->it));
+			it = (julia_bonus((i - WIDTH / 2) / hadik->zoom, \
+			(j - HEIGHT / 2) / hadik->zoom, hadik) / ITER) * 255;
+			my_mlx_pixel_put_bonus(hadik, i, j, create_trgb_bonus(0, it, it, it));
 			i++;
 		}
 		j++;

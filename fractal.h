@@ -6,7 +6,7 @@
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 00:41:49 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/16 21:54:37 by ojebbari         ###   ########.fr       */
+/*   Updated: 2023/05/20 18:02:36 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,18 @@ enum {
 	ON_DESTROY = 17
 };
 
-void render_julia(t_vars *hadik);
-int	julia(double a, double b, t_vars *hadik);
 double	mag(double a, double b);
-int		mandelbrot(double a, double b);
-int		create_trgb(int t, int r, int g, int b);
-int on_close(t_vars *hadik);
-void	render_mandelbrot(t_vars *s);
-int	mouse_handler(int x, int y, t_vars *hadik);
 void	my_mlx_pixel_put(t_vars *data, int x, int y, int color);
+void	render_mandelbrot(t_vars *hadik);
+void	render_julia(t_vars *hadik);
 void	render_set(t_vars *hadik);
-	int key_handler(int keycode, void *param);
-		int mouse_key_handler(int button, int x, int y, t_vars *param);
+int	mouse_zoom_handler(int button, int x, int y, t_vars *param);
+int	mouse_handler(int x, int y, t_vars *hadik);
+int	julia(double a, double b, t_vars *hadik);
+int	create_trgb(int t, int r, int g, int b);
+int	key_handler(int keycode, void *param);
+int ft_strcmp(char *str, char *str1);
+int	mandelbrot(double a, double b);
+int	on_close(t_vars *hadik);
+
 #endif
