@@ -6,7 +6,7 @@
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 22:34:25 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/17 15:44:08 by ojebbari         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:31:55 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	julia(double a, double b, t_vars *hadik)
 	i = 0;
 	zr = a;
 	zi = b;
-	while (i < ITER && mag(zr, zi) < 2.0)
+	while (i < ITER && mag(zr, zi) <= 2.0)
 	{
 		tmp = zr;
-		zr = zr * zr - zi * zi + hadik->mouse_x ;
-		zi = 2 * tmp * zi + hadik->mouse_y;
+		zr = zr * zr - zi * zi + hadik->julia_x ;
+		zi = 2 * tmp * zi + hadik->julia_y;
 		i++;
 	}
 	return (i);
@@ -45,8 +45,8 @@ void render_julia(t_vars *hadik)
 		i = 0;
 		while (i < WIDTH)
 		{
-			it = (julia((i - WIDTH / 2) / hadik->zoom, \
-			(j - HEIGHT / 2) / hadik->zoom, hadik) / ITER) * 255;
+			it = (julia((hadik->zoom_x + i - WIDTH / 2) / hadik->zoom, \
+			(hadik->zoom_y + j - HEIGHT / 2) / hadik->zoom, hadik) / ITER) * 255;
 			my_mlx_pixel_put(hadik, i, j, create_trgb(0, it, it, it));
 			i++;
 		}

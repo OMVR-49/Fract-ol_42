@@ -6,7 +6,7 @@
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 00:41:49 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/20 18:02:36 by ojebbari         ###   ########.fr       */
+/*   Updated: 2023/05/21 04:27:45 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,32 @@
 # define WIDTH 800
 # define HEIGHT 800
 # define ITER 40.0
-# define ZOOM_FACTOR 1.1
+# define ZOOM_FACTOR 1.5
 
 typedef struct s_vars {
    	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img;
 	char	*addr;
+
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+
 	int	it;
 	int	i;
 	int	j;
+
 	int	rraqm;
-	double mouse_x;
-	double mouse_y;
-	double zoom;
+
+	double julia_x;
+	double julia_y;
+
+	double	zoom;
+	double	zoom_x;
+	double	zoom_y;
+	
+	int	color_num;
 } t_vars;
 
 enum {
@@ -50,18 +59,25 @@ enum {
 	ON_DESTROY = 17
 };
 
-double	mag(double a, double b);
-void	my_mlx_pixel_put(t_vars *data, int x, int y, int color);
 void	render_mandelbrot(t_vars *hadik);
+int	mandelbrot(double a, double b);
+
 void	render_julia(t_vars *hadik);
+int	julia(double a, double b, t_vars *hadik);
+
+void	my_mlx_pixel_put(t_vars *data, int x, int y, int color);
 void	render_set(t_vars *hadik);
+
+int	create_trgb(int t, int r, int g, int b);
+int	on_close(t_vars *hadik);
+int ft_strcmp(char *s1, char *s2);
+double	mag(double a, double b);
+
 int	mouse_zoom_handler(int button, int x, int y, t_vars *param);
 int	mouse_handler(int x, int y, t_vars *hadik);
-int	julia(double a, double b, t_vars *hadik);
-int	create_trgb(int t, int r, int g, int b);
+
 int	key_handler(int keycode, void *param);
-int ft_strcmp(char *str, char *str1);
-int	mandelbrot(double a, double b);
-int	on_close(t_vars *hadik);
+
+void hooks(t_vars *hadik);
 
 #endif

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   Tricorn_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 22:52:33 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/21 03:04:04 by ojebbari         ###   ########.fr       */
+/*   Created: 2023/05/17 23:13:10 by ojebbari          #+#    #+#             */
+/*   Updated: 2023/05/21 03:49:24 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal.h"
+# include "fractal_bonus.h"
 
-int	mandelbrot(double a, double b)
+int	Tricorn(double a, double b)
 {
 	double		zr;
 	double		zi;
@@ -26,13 +26,13 @@ int	mandelbrot(double a, double b)
 	{
 		tmp = zr;
 		zr = zr * zr - zi * zi + a;
-		zi = 2 * tmp * zi + b;
+		zi = -2 * tmp * zi + b;
 		i++;
 	}
 	return (i);
 }
 
-void render_mandelbrot(t_vars *hadik)
+void render_Tricorn(t_vars *hadik)
 {
 	int i;
 	int j;
@@ -45,10 +45,11 @@ void render_mandelbrot(t_vars *hadik)
 		i = 0;
 		while (i < WIDTH)
 		{
-			it = (mandelbrot((hadik->zoom_x + i - WIDTH / 2) / hadik->zoom, (hadik->zoom_y + j - HEIGHT / 2) / hadik->zoom) / ITER ) * 255;
-			my_mlx_pixel_put(hadik, i, j, create_trgb(0, it, it, it));
+			it = Tricorn((hadik->zoom_x + i - WIDTH / 2) / hadik->zoom , (hadik->zoom_y + j - HEIGHT / 2) / hadik->zoom);
+			my_mlx_pixel_put(hadik, i, j, which_color(it, hadik->color_num));
 			i++;
 		}
 		j++;
 	}
 }
+

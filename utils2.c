@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot_bonus.c                                 :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 03:01:19 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/21 03:49:01 by ojebbari         ###   ########.fr       */
+/*   Created: 2023/05/21 00:23:06 by ojebbari          #+#    #+#             */
+/*   Updated: 2023/05/21 00:26:15 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal_bonus.h"
+#include "fractal.h"
 
-void render_mandelbrot_bonus(t_vars *hadik)
+double	mag(double a, double b)
+{
+	return (sqrt(a * a + b * b));
+}
+
+int ft_strcmp(char *s1, char *s2)
 {
 	int i;
-	int j;
-	int it;
 
 	i = 0;
-	j = 0;
-	while (j < HEIGHT)
-	{
-		i = 0;
-		while (i < WIDTH)
-		{
-			it = mandelbrot((hadik->zoom_x + i - WIDTH / 2) / hadik->zoom, (hadik->zoom_y + j - HEIGHT / 2) / hadik->zoom);
-			my_mlx_pixel_put(hadik, i, j, which_color(it, hadik->color_num));
-			i++;
-		}
-		j++;
-	}
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
 }

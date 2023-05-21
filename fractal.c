@@ -6,7 +6,7 @@
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 00:41:52 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/20 22:07:40 by ojebbari         ###   ########.fr       */
+/*   Updated: 2023/05/21 04:31:17 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,10 @@ void	ft_parcing(t_vars *hadik, int argc, char **argv)
 		hadik->rraqm = 2;
 }
 
-void render_set(t_vars *hadik)
-{
-	hadik->img = mlx_new_image(hadik->mlx_ptr, WIDTH, HEIGHT);
-	hadik->addr = mlx_get_data_addr(hadik->img, &hadik->bits_per_pixel, &hadik->line_length,
-								&hadik->endian);
-	mlx_clear_window(hadik->mlx_ptr, hadik->win_ptr);
-	if (hadik->rraqm == 1)
-		render_mandelbrot(hadik);
-	else if (hadik->rraqm == 2)
-		render_julia(hadik);
-	mlx_put_image_to_window(hadik->mlx_ptr, hadik->win_ptr, hadik->img, 0, 0);
-}
-
-void f()
-{
-	system("leaks FRACTAL");
-}
-
 int	main(int argc, char **argv)
 {
 	t_vars	hadik;
 
-	//atexit(f);
 	ft_parcing(&hadik ,argc, argv);
 	hadik.zoom = ((WIDTH + HEIGHT) / 8.0);
 	hadik.mlx_ptr = mlx_init();
