@@ -6,7 +6,7 @@
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 22:52:33 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/21 03:04:04 by ojebbari         ###   ########.fr       */
+/*   Updated: 2023/05/21 05:20:48 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	mandelbrot(double a, double b)
 {
-	double		zr;
-	double		zi;
-	double		tmp;
-	int			i;
+	double	zr;
+	double	zi;
+	double	tmp;
+	int		i;
 
 	i = 0;
 	zi = 0;
@@ -32,11 +32,11 @@ int	mandelbrot(double a, double b)
 	return (i);
 }
 
-void render_mandelbrot(t_vars *hadik)
+void	render_mandelbrot(t_vars *hadik)
 {
-	int i;
-	int j;
-	int it;
+	int	i;
+	int	j;
+	int	it;
 
 	i = 0;
 	j = 0;
@@ -45,7 +45,8 @@ void render_mandelbrot(t_vars *hadik)
 		i = 0;
 		while (i < WIDTH)
 		{
-			it = (mandelbrot((hadik->zoom_x + i - WIDTH / 2) / hadik->zoom, (hadik->zoom_y + j - HEIGHT / 2) / hadik->zoom) / ITER ) * 255;
+			it = (mandelbrot((i - WIDTH / 2) / hadik->zoom, \
+							(j - HEIGHT / 2) / hadik->zoom) / ITER) * 255;
 			my_mlx_pixel_put(hadik, i, j, create_trgb(0, it, it, it));
 			i++;
 		}

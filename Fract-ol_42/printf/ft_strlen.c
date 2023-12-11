@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 03:01:19 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/21 03:49:01 by ojebbari         ###   ########.fr       */
+/*   Created: 2022/12/17 22:57:43 by ojebbari          #+#    #+#             */
+/*   Updated: 2022/12/18 20:53:40 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal_bonus.h"
+#include "ft_printf.h"
 
-void render_mandelbrot_bonus(t_vars *hadik)
+size_t	ft_strlen(const char *str)
 {
-	int i;
-	int j;
-	int it;
+	size_t	i;
 
 	i = 0;
-	j = 0;
-	while (j < HEIGHT)
+	while (str[i] != '\0')
 	{
-		i = 0;
-		while (i < WIDTH)
-		{
-			it = mandelbrot((hadik->zoom_x + i - WIDTH / 2) / hadik->zoom, (hadik->zoom_y + j - HEIGHT / 2) / hadik->zoom);
-			my_mlx_pixel_put(hadik, i, j, which_color(it, hadik->color_num));
-			i++;
-		}
-		j++;
+		i++;
 	}
+	return (i);
 }

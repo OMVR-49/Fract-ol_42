@@ -1,42 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Tricorn_bonus.c                                    :+:      :+:    :+:   */
+/*   mandelbrot_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 23:13:10 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/21 03:49:24 by ojebbari         ###   ########.fr       */
+/*   Created: 2023/05/21 03:01:19 by ojebbari          #+#    #+#             */
+/*   Updated: 2023/05/21 05:17:00 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fractal_bonus.h"
+#include "fractal_bonus.h"
 
-int	Tricorn(double a, double b)
+void	render_mandelbrot_bonus(t_vars *hadik)
 {
-	double		zr;
-	double		zi;
-	double		tmp;
-	int			i;
-
-	i = 0;
-	zi = 0;
-	zr = 0;
-	while (i < ITER && mag(zr, zi) <= 2.0)
-	{
-		tmp = zr;
-		zr = zr * zr - zi * zi + a;
-		zi = -2 * tmp * zi + b;
-		i++;
-	}
-	return (i);
-}
-
-void render_Tricorn(t_vars *hadik)
-{
-	int i;
-	int j;
-	int it;
+	int	i;
+	int	j;
+	int	it;
 
 	i = 0;
 	j = 0;
@@ -45,11 +25,11 @@ void render_Tricorn(t_vars *hadik)
 		i = 0;
 		while (i < WIDTH)
 		{
-			it = Tricorn((hadik->zoom_x + i - WIDTH / 2) / hadik->zoom , (hadik->zoom_y + j - HEIGHT / 2) / hadik->zoom);
+			it = mandelbrot((hadik->zoom_x + i - WIDTH / 2) / hadik->zoom,
+					(hadik->zoom_y + j - HEIGHT / 2) / hadik->zoom);
 			my_mlx_pixel_put(hadik, i, j, which_color(it, hadik->color_num));
 			i++;
 		}
 		j++;
 	}
 }
-

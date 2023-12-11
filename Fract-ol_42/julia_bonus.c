@@ -6,7 +6,7 @@
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 03:02:40 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/21 04:25:30 by ojebbari         ###   ########.fr       */
+/*   Updated: 2023/05/21 05:19:44 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	julia_bonus(double a, double b, t_vars *hadik)
 {
-	double		zr;
-	double		zi;
-	double		tmp;
-	int			i;
+	double	zr;
+	double	zi;
+	double	tmp;
+	int		i;
 
 	i = 0;
 	zr = a;
@@ -32,11 +32,11 @@ int	julia_bonus(double a, double b, t_vars *hadik)
 	return (i);
 }
 
-void render_julia_bonus(t_vars *hadik)
+void	render_julia_bonus(t_vars *hadik)
 {
-	int i;
-	int j;
-	int it;
+	int	i;
+	int	j;
+	int	it;
 
 	j = 0;
 	while (j < HEIGHT)
@@ -44,8 +44,9 @@ void render_julia_bonus(t_vars *hadik)
 		i = 0;
 		while (i < WIDTH)
 		{
-			it = (julia((hadik->zoom_x + i - WIDTH / 2) / hadik->zoom, \
-			(hadik->zoom_y + j - HEIGHT / 2) / hadik->zoom, hadik));
+			it = (julia((hadik->zoom_x + i - WIDTH / 2) / hadik->zoom,
+						(hadik->zoom_y + j - HEIGHT / 2) / hadik->zoom,
+						hadik));
 			my_mlx_pixel_put(hadik, i, j, which_color(it, hadik->color_num));
 			i++;
 		}
@@ -53,10 +54,10 @@ void render_julia_bonus(t_vars *hadik)
 	}
 }
 
-int mouse_handler_bonus(int x, int y, t_vars *hadik)
+int	mouse_handler_bonus(int x, int y, t_vars *hadik)
 {
-	hadik->julia_x = (x - WIDTH/2.0)/(WIDTH/4.0);
-	hadik->julia_y = (y - WIDTH/2.0)/(WIDTH/4.0);
+	hadik->julia_x = (x - WIDTH / 2.0) / (WIDTH / 4.0);
+	hadik->julia_y = (y - WIDTH / 2.0) / (WIDTH / 4.0);
 	render_set_bonus(hadik);
-	return(0);
+	return (0);
 }

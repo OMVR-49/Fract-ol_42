@@ -6,7 +6,7 @@
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:14:10 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/21 03:45:20 by ojebbari         ###   ########.fr       */
+/*   Updated: 2023/05/21 05:18:53 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	initialization(t_vars *bonus)
 	bonus->julia_x = 0;
 	bonus->julia_y = 0;
 }
+
 static void	ft_parcing_bonus(t_vars *bonus, int argc, char **argv)
 {
 	if (argc < 2)
@@ -33,7 +34,9 @@ static void	ft_parcing_bonus(t_vars *bonus, int argc, char **argv)
 		, tricorn\n");
 		exit(1);
 	}
-	if(argc != 2 || (ft_strcmp("mandelbrot", argv[1]) != 0 && ft_strcmp("julia",argv[1]) != 0 && ft_strcmp("tricorn",argv[1]) != 0))
+	if (argc != 2 || (ft_strcmp("mandelbrot", argv[1]) != 0
+			&& ft_strcmp("julia", argv[1]) != 0 && ft_strcmp("tricorn",
+				argv[1]) != 0))
 	{
 		ft_printf("Invalid parameters, available parameters: julia, mandelbrot\
 , tricorn");
@@ -47,11 +50,11 @@ static void	ft_parcing_bonus(t_vars *bonus, int argc, char **argv)
 		bonus->rraqm = 3;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_vars	bonus;
 
-	ft_parcing_bonus(&bonus ,argc, argv);
+	ft_parcing_bonus(&bonus, argc, argv);
 	initialization(&bonus);
 	render_set_bonus(&bonus);
 	mlx_hook(bonus.win_ptr, 6, 0, mouse_handler_bonus, &bonus);

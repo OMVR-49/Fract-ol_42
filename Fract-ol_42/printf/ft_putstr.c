@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojebbari <ojebbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 00:23:06 by ojebbari          #+#    #+#             */
-/*   Updated: 2023/05/21 00:26:15 by ojebbari         ###   ########.fr       */
+/*   Created: 2022/12/13 22:26:48 by ojebbari          #+#    #+#             */
+/*   Updated: 2022/12/18 20:51:14 by ojebbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractal.h"
+#include "ft_printf.h"
 
-double	mag(double a, double b)
+int	ft_putstr(char	*str)
 {
-	return (sqrt(a * a + b * b));
-}
-
-int ft_strcmp(char *s1, char *s2)
-{
-	int i;
+	int	i;
 
 	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
 		i++;
-	return (s1[i] - s2[i]);
-}
-
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
+	}
+	return (i);
 }
